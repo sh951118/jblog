@@ -15,9 +15,9 @@
 		<div id="wrapper">
 			<div id="content" class="full-screen">
 				<ul class="admin-menu">
-					<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/basic">기본설정</a></li>
+					<li><a href="${pageContext.request.contextPath }/${blogVo.id }/admin/basic">기본설정</a></li>
 					<li class="selected">카테고리</li>
-					<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/post">글작성</a></li>
+					<li><a href="${pageContext.request.contextPath }/${blogVo.id }/admin/post">글작성</a></li>
 				</ul>
 				<table class="admin-cat">
 					<tr>
@@ -37,7 +37,7 @@
 							<td>
 							<c:choose>
 								<c:when test="${list.postcount eq 0 }">
-									<a href="${pageContext.request.contextPath }/${authUser.id }/delete/${list.no }" class="del">
+									<a href="${pageContext.request.contextPath }/${blogVo.id }/delete/${list.no }" class="del">
 									<img src="${pageContext.request.contextPath }/assets/images/delete.jpg"></a>
 								</c:when>
 								<c:otherwise>

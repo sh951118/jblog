@@ -27,7 +27,6 @@ public class BlogController {
 	@Autowired
 	private BlogService blogService;
 	
-	@Auth
 	@RequestMapping( {"", "/{pathNo1}", "/{pathNo1}/{pathNo2}" } )
 	public String mian(@PathVariable("id") String id,
 					   @PathVariable Optional<Long> pathNo1,
@@ -68,7 +67,7 @@ public class BlogController {
 		blogVo.setId(id);
 		blogService.updateblog(blogVo);
 		
-		return "blog/blog-admin-category";
+		return "redirect:/"+ id;
 	}
 	@Auth
 	@RequestMapping("/admin/cartegory")

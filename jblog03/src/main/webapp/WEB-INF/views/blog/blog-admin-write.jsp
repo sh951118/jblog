@@ -17,11 +17,11 @@
 			<div id="content" class="full-screen">
 
 				<ul class="admin-menu">
-					<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/basic">기본설정</a></li>
-					<li><a href="${pageContext.request.contextPath }/${authUser.id }/admin/cartegory">카테고리</a></li>
+					<li><a href="${pageContext.request.contextPath }/${blogVo.id }/admin/basic">기본설정</a></li>
+					<li><a href="${pageContext.request.contextPath }/${blogVo.id }/admin/cartegory">카테고리</a></li>
 					<li class="selected">글작성</li>
 				</ul>
-				<form action="${pageContext.request.contextPath }/${authUser.id }/admin/post" method="post">
+				<form action="${pageContext.request.contextPath }/${blogVo.id }/admin/post" method="post">
 					<table class="admin-cat-write">
 						<tr>
 							<td class="t">제목</td>

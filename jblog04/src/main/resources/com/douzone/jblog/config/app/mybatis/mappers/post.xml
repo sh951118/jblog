@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="post">
+
+	<insert id="postinsert" parameterType="postvo">
+		<![CDATA[
+ 		insert 
+ 		into post
+ 		values(null, #{title }, #{contents }, now(), #{cartegoryno })
+		]]>
+	</insert>
+
+	<select id="postFind" resultType="postvo" parameterType="map">
+		<![CDATA[
+		select c.no,
+			   c.title,
+	   		   c.contents,
+	   		   date_format(c.reg_date, '%Y-%m-%d %h:%i:%s') as regdate
+		  from blog a, cartegory b, post c 
+          where c.category_no = b.no
+          and a.id = #{id }
+          and b.no = #{cartegoryno }
+		]]>
+	</select>
+	
+	<select id="getpostno" resultType="long" parameterType="long">
+		<![CDATA[
+		select no
+		  from post
+		 where category_no = #{cartegoryno }
+		 limit 1
+		]]>
+	</select>
+	
+	<select id="getpostcontent" resultType="postvo" parameterType="long">
+		<![CDATA[
+		select title,
+			   contents
+		  from post
+		 where no = #{no }
+		]]>
+	</select>
+</mapper>

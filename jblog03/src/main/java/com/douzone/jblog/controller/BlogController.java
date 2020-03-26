@@ -95,7 +95,7 @@ public class BlogController {
 	public String delete(@PathVariable("id")String id,
 						 @PathVariable("no")Long no){
 		blogService.deleteCartegory(no);
-		return "redirect:/"+ id +"/blog-admin-category";
+		return "redirect:/"+ id +"/admin/cartegory";
 	}
 	@Auth
 	@RequestMapping(value="/admin/post", method=RequestMethod.GET)

@@ -46,11 +46,6 @@ public class BlogService {
 			
 			String saveFilename = generatrSaveFilename(extName);
 			long fileSize = multipartFile.getSize();
-
-			System.out.println("#########" + originFilename);
-			System.out.println("#########" + saveFilename);
-			System.out.println("#########" + fileSize);
-
 			byte[] fileData = multipartFile.getBytes();
 			OutputStream os = new FileOutputStream(SAVE_PATH + "/" + saveFilename);
 			os.write(fileData);
@@ -118,10 +113,6 @@ public class BlogService {
 		PostVo getpost = postRepository.getpostcontent(postNo);
 		
 		Map<String, Object> map = new HashMap<String, Object>();
-		
-		System.out.println(blog);
-		System.out.println(cartegorylist);
-		System.out.println(postlist);
 		
 		map.put("bloglist", blog);
 		map.put("cartegorylist", cartegorylist);

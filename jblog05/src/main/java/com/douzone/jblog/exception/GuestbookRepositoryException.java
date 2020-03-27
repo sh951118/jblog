@@ -12,3 +12,4 @@ public class GuestbookRepositoryException extends RuntimeException {
 		super(message);
 	}
 }
+

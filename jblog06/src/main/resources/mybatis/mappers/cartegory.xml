@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cartegory">
+
+	<insert id="cartegoryinsert" parameterType="cartegoryvo">
+		<![CDATA[
+ 		insert 
+ 		into cartegory
+ 		values(null, "기타", "기부니 좋타", now(), #{id })
+		]]>
+	</insert>
+
+	<select id="cartegoryList" resultType="cartegoryvo" parameterType="string">
+		<![CDATA[
+		select a.no,
+			   a.name, 
+			   a.description, 
+			   date_format(a.reg_date, '%Y-%m-%d %h:%i:%s') as regdate,
+               count(b.no) as postcount
+		  from cartegory a left join post b on b.category_no = a.no
+          where a.id = #{id }
+          group by a.no
+          order by a.reg_date desc
+		]]>
+	</select>
+
+	<insert id="cartegoryaddinsert" parameterType="cartegoryvo">
+		<![CDATA[
+ 		insert 
+ 		into cartegory
+ 		values(null, #{name }, #{description }, now(), #{id })
+		]]>
+	</insert>
+	
+	<delete id="deleteCartegory" parameterType="long">
+		<![CDATA[
+ 		delete 
+ 		from cartegory
+ 		where no = #{no }
+		]]>
+	</delete>
+
+	<select id="cartegoryFind" resultType="cartegoryvo" parameterType="string">
+		<![CDATA[
+		select a.no,
+			   a.name, 
+			   b.no,
+			   b.title,
+			   date_format(b.reg_date, '%Y-%m-%d %h:%i:%s') as regdate
+		  from cartegory a left join post b on b.category_no = a.no
+          where a.id = #{id }
+          group by a.no
+          order by b.reg_date desc
+		]]>
+	</select>
+	
+	<select id="getcartegoryno" parameterType="string" resultType="long">
+		<![CDATA[
+		select no
+	from cartegory
+	where id = #{id }
+    limit 1
+		]]>
+	</select>
+	
+	<select id="cartegoryNo" parameterType="string" resultType="long">
+		<![CDATA[
+		select no
+	from cartegory
+	where id = #{id }
+	 limit 1
+		]]>
+	</select>
+</mapper>

@@ -8,6 +8,19 @@ public class CartegoryVo {
 	private String regdate;
 	private int postcount;
 	private String id;
+	
+	public CartegoryVo() {
+		
+	}
+	public CartegoryVo(Long no, String name,String regdate,int postcount, String description, String id) {
+		this.no = no;
+		this.name = name;
+		this.description = description;
+		this.postcount = postcount;
+		this.regdate = regdate;
+		this.id = id;
+	}
+	
 	public long getNo() {
 		return no;
 	}

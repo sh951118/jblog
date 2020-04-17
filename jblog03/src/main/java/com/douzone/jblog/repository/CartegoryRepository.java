@@ -23,8 +23,8 @@ public class CartegoryRepository {
 		return list;
 	}
 
-	public int cartegoryaddinsert(CartegoryVo cartegoryVo) {
-		return sqlSession.insert("cartegory.cartegoryaddinsert", cartegoryVo);
+	public int cartegoryaddinsert(CartegoryVo vo) {
+		return sqlSession.insert("cartegory.cartegoryaddinsert", vo);
 	}
 
 	public int deleteCartegory(Long no) {

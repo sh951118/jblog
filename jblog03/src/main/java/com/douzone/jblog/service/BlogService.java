@@ -94,8 +94,8 @@ public class BlogService {
 		return list;
 	}
 
-	public boolean cartegoryaddinsert(CartegoryVo cartegoryVo) {
-		int user = cartegoryRepository.cartegoryaddinsert(cartegoryVo);
+	public boolean cartegoryaddinsert(CartegoryVo vo) {
+		int user = cartegoryRepository.cartegoryaddinsert(vo);
 		return user == 1;
 	}
 

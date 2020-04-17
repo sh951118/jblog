@@ -75,7 +75,7 @@ var fetchList = function(){
 		}
 	});	
 }
-$(document).on('click','a', function(event){
+$(document).on('click','.admin-cat a', function(event){
 	event.preventDefault();
 	var deleteno = $(this).data('no');
 	$(this).parents('tr').remove();

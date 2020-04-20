@@ -68,16 +68,17 @@ var fetchList = function(){
 			var html = listTemplate.render(response);
 			$(".admin-cat").append(html);
 			
-			startNo = $('.admin-cat td').last().data('no') || 0;
 		},
 		error: function(xhr, status, e){
 			console.error(status + ":" + e);
 		}
 	});	
 }
+
 $(document).on('click','.admin-cat a', function(event){
 	event.preventDefault();
 	var deleteno = $(this).data('no');
+	
 	$(this).parents('tr').remove();
 	$.ajax({
 		url: '${pageContext.request.contextPath }/${authUser.id}/cartegory/delete/' + deleteno,
@@ -89,6 +90,10 @@ $(document).on('click','.admin-cat a', function(event){
 			if(response.result != "success"){
 				console.error(response.message);
 				return;
+			}
+			
+			for(var i = 1; i < $('.admin-cat tr').length; i++){
+				$($('.admin-cat tr')[i]).children(0)[0].innerText = i;
 			}
 		},
 		error: function(xhr, status, e){
@@ -137,6 +142,7 @@ $(function() {
 // 				render(response.data, true);
 				var lastNum = Number($('.admin-cat tr:last-child td')[0].innerText)+ 1;
 				response.data.lastNum = lastNum;
+				
 				var html = listItemTemplate.render(response.data);
 				$(".admin-cat tr").last().after(html);
 				

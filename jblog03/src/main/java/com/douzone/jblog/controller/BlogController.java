@@ -93,7 +93,9 @@ public class BlogController {
 	}
 	@Auth
 	@RequestMapping("/admin/cartegory")
-	public String indexSpa(Model model) {
+	public String indexSpa(Model model, @PathVariable("id")Optional<String> id) {
+		BlogVo blogVo = blogService.getList(id.get());
+		model.addAttribute("blogVo", blogVo);
 		return "blog/blog-admin-category";
 	}
 }

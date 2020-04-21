@@ -10,7 +10,8 @@
 		]]>
 	</insert>
 
-	<select id="cartegoryList" resultType="cartegoryvo" parameterType="string">
+	<select id="cartegoryList" resultType="cartegoryvo"
+		parameterType="string">
 		<![CDATA[
 		select a.no,
 			   a.name, 
@@ -20,7 +21,7 @@
 		  from cartegory a left join post b on b.category_no = a.no
           where a.id = #{id }
           group by a.no
-          order by a.reg_date desc
+          order by a.reg_date
 		]]>
 	</select>
 
@@ -30,8 +31,13 @@
  		into cartegory
  		values(null, #{name }, #{description }, now(), #{id })
 		]]>
+		<selectKey keyProperty="no" resultType="long" order="AFTER">
+			select
+			last_insert_id()
+		</selectKey>
+
 	</insert>
-	
+
 	<delete id="deleteCartegory" parameterType="long">
 		<![CDATA[
  		delete 
@@ -40,7 +46,8 @@
 		]]>
 	</delete>
 
-	<select id="cartegoryFind" resultType="cartegoryvo" parameterType="string">
+	<select id="cartegoryFind" resultType="cartegoryvo"
+		parameterType="string">
 		<![CDATA[
 		select a.no,
 			   a.name, 
@@ -53,8 +60,9 @@
           order by b.reg_date desc
 		]]>
 	</select>
-	
-	<select id="getcartegoryno" parameterType="string" resultType="long">
+
+	<select id="getcartegoryno" parameterType="string"
+		resultType="long">
 		<![CDATA[
 		select no
 	from cartegory
@@ -62,8 +70,9 @@
     limit 1
 		]]>
 	</select>
-	
-	<select id="cartegoryNo" parameterType="string" resultType="long">
+
+	<select id="cartegoryNo" parameterType="string"
+		resultType="long">
 		<![CDATA[
 		select no
 	from cartegory

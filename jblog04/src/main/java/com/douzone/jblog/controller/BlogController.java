@@ -69,34 +69,7 @@ public class BlogController {
 		
 		return "redirect:/"+ id;
 	}
-	@Auth
-	@RequestMapping("/admin/cartegory")
-	public String blogcategory(@PathVariable("id")Optional<String> id,
-							   Model model) {
-		
-		List<CartegoryVo> list = blogService.cartegoryList(id.get());
-		model.addAttribute("list", list);
-		BlogVo blogVo = blogService.getList(id.get());
-		model.addAttribute("blogVo", blogVo);
-		
-		return "blog/blog-admin-category";
-	}
-	@Auth
-	@RequestMapping(value="/admin/cartegory", method=RequestMethod.POST)
-	public String blogcategory(@PathVariable("id")String id,
-							   @ModelAttribute CartegoryVo cartegoryVo) {
-		cartegoryVo.setId(id);
-		blogService.cartegoryaddinsert(cartegoryVo);
-		
-		return "redirect:/"+ id;
-	}
-	@Auth
-	@RequestMapping("/delete/{no}")
-	public String delete(@PathVariable("id")String id,
-						 @PathVariable("no")Long no){
-		blogService.deleteCartegory(no);
-		return "redirect:/"+ id +"/admin/cartegory";
-	}
+	
 	@Auth
 	@RequestMapping(value="/admin/post", method=RequestMethod.GET)
 	public String blogwrite(@PathVariable("id")Optional<String> id,
@@ -117,5 +90,12 @@ public class BlogController {
 		blogService.postinsert(postVo);
 		
 		return "redirect:/"+ id;
+	}
+	@Auth
+	@RequestMapping("/admin/cartegory")
+	public String indexSpa(Model model, @PathVariable("id")Optional<String> id) {
+		BlogVo blogVo = blogService.getList(id.get());
+		model.addAttribute("blogVo", blogVo);
+		return "blog/blog-admin-category";
 	}
 }
